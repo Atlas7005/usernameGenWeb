@@ -6,8 +6,44 @@
 		<meta name=viewport content="width=device-width, initial-scale=1">
 		<title>Random Username Generator — Atlas</title>
 		<link rel="stylesheet" href="/style.css">
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@exampledev/new.css@1/new.min.css">
 	</head>
 	<body>
-		<h1>yo</h1>
+		<h1>Random Username Generator</h1>
+		<p>I don't know why I made this.</p>
+		<hr>
+		<form name="main">
+			<p>
+				<label>Length of Username:</label><br>
+				<label>
+					<input type="number" name="len" value="4" min="1" max="16">
+				</label>
+			</p>
+			<p>
+				<label>Amount of Usernames:</label><br>
+				<label>
+					<input type="number" name="amnt" value="1" min="1" max="250">
+				</label>
+				<br>
+				<input type="submit">
+			</p>
+			<p>
+				<label>Output:</label><br>
+				<label>
+					<textarea name="output" cols="100" rows="25" readonly></textarea>
+				</label>
+			</p>
+		</form>
+		<script defer>
+			const qs = s => document.querySelector(s);
+
+			qs("input[type='submit']").onclick = e => {
+				e.preventDefault();
+
+				fetch("/api/random/"+qs("input[name='len']").value+"/"+qs("input[name='amnt']").value).then(res => res.text()).then(res => {
+					qs("textarea").value = res;
+				});
+			}
+		</script>
 	</body>
 </html>
