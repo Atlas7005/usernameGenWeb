@@ -1,0 +1,33 @@
+const express = require("express");
+const RandExp = require("randexp");
+const route = express.Router();
+
+route.get("/random/:len?/:amnt?", (req, res) => {
+	const params = req.params;
+	
+	var name = gen(params.len, params.amnt);
+
+	res.send(name);
+});
+
+function gen(len=4, amnt=1) {
+	if(len > 25) len = 25;
+	if(parseInt(amnt) > 1) {
+		const names = [];
+		for (var i = 0; i < parseInt(amnt); i++) {
+			var name = new RandExp("^[a-zA-Z0-9][\w]{"+(parseInt(len)-1)+"}$").gen();
+			names.push(name);
+
+			if(i === parseInt(amnt)-1 || i === 249) {
+				break;
+			}
+		}
+
+		return names;
+	} else {
+		var name = new RandExp("^[a-zA-Z0-9][\w]{"+(parseInt(len)-1)+"}$").gen();
+		return name;
+	}
+}
+
+module.exports = route;
