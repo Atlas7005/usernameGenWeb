@@ -1,5 +1,15 @@
 const express = require("express");
-const RandExp = require("randexp");
 const app = express();
 
-app.listen(1338, port => console.log(`Listening on ${port}`));
+const PORT = 1338;
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(express.static("public"));
+app.use("/api", require("./api.js"));
+
+app.get("/", (req, res) => {
+	res.sendFile(`${__dirname}/html/index.html`);
+});
+
+app.listen(PORT, () => console.log(`Listening on ${PORT}`));
