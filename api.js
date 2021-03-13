@@ -11,11 +11,11 @@ route.get("/random/:len?/:amnt?", (req, res) => {
 });
 
 function gen(len=4, amnt=1) {
-	if(len > 25) len = 25;
+	if(len > 16) len = 16;
 	if(parseInt(amnt) > 1) {
 		const names = [];
 		for (var i = 0; i < parseInt(amnt); i++) {
-			var name = new RandExp("^[a-zA-Z0-9][\w]{"+(parseInt(len)-1)+"}$").gen();
+			var name = new RandExp("^[a-zA-Z0-9][\\w]{"+(parseInt(len)-1)+"}$").gen();
 			names.push(name);
 
 			if(i === parseInt(amnt)-1 || i === 249) {
@@ -23,9 +23,9 @@ function gen(len=4, amnt=1) {
 			}
 		}
 
-		return names;
+		return names.join("\n");
 	} else {
-		var name = new RandExp("^[a-zA-Z0-9][\w]{"+(parseInt(len)-1)+"}$").gen();
+		var name = new RandExp("^[a-zA-Z0-9][\\w]{"+(parseInt(len)-1)+"}$").gen();
 		return name;
 	}
 }
