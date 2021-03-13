@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/Atlas7005/usernameGenWeb/issues"
   },
-  "homepage": "https://github.com/Atlas7005/usernameGenWeb#readme"
+  "homepage": "https://github.com/Atlas7005/usernameGenWeb#readme",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "randexp": "^0.5.3"
+  }
 }
