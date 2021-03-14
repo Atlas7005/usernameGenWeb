@@ -6,6 +6,10 @@ hr {
 	border-color: var(--nc-bg-2);
 }
 
+textarea {
+	resize: none;
+}
+
 .gray {
 	color: gray;
 	font-size: 11px;
@@ -24,4 +28,22 @@ hr {
 	    --nc-ac-1: #7928CA !important;
 	    --nc-ac-tx: #FFFFFF !important;
 	}
+}
+
+::-webkit-scrollbar {
+	width: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background: #4D4D4D; 
+}
+ 
+::-webkit-scrollbar-thumb {
+	height: 56px;
+	background: #ACACAC; 
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: #727272;
+	cursor: pointer;
 }
