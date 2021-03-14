@@ -40,7 +40,13 @@
 			qs("input[type='submit']").onclick = e => {
 				e.preventDefault();
 
-				fetch("/api/random/"+qs("input[name='len']").value+"/"+qs("input[name='amnt']").value).then(res => res.text()).then(res => {
+				var len = qs("input[name='len']");
+				var amnt = qs("input[name='amnt']");
+
+				if(parseInt(len.value) > 16) len.value = 16;
+				if(parseInt(amnt.value) > 250) amnt.value = 250;
+
+				fetch("/api/random/"+len.value+"/"+amnt.value).then(res => res.text()).then(res => {
 					qs("textarea").value = res;
 				});
 			}
