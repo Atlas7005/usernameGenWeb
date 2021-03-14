@@ -43,6 +43,9 @@
 				var len = qs("input[name='len']");
 				var amnt = qs("input[name='amnt']");
 
+				if(isNaN(parseInt(len.value))) len.value = 4;
+				if(isNaN(parseInt(amnt.value))) amnt.value = 1;
+
 				if(parseInt(len.value) > 16) len.value = 16;
 				if(parseInt(amnt.value) > 250) amnt.value = 250;
 
