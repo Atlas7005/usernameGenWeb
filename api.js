@@ -1,6 +1,14 @@
 const express = require("express");
 const RandExp = require("randexp");
+const rateLimiting = require("express-rate-limit");
 const route = express.Router();
+
+route.use(rateLimiting({
+	windowMs: 30000,
+	max: 20,
+	statusCode: 200,
+	message: "Too many requests, please wait."
+}));
 
 route.get("/random/:len?/:amnt?", (req, res) => {
 	const params = req.params;
