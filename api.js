@@ -28,7 +28,7 @@ route.get("/exists/:username?", apicache.middleware("30 minutes"), async (req, r
 	const params = req.params;
 
 	if(params.username) {
-		const user = await apiClient.helix.users.getUserByName(params.username);
+		const user = await apiClient.helix.users.getUserByName(params.username.toLowerCase());
 		res.send(user !== null);
 	}
 });
