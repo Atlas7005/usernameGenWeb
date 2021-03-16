@@ -49,6 +49,8 @@
 				if(parseInt(len.value) > 16) len.value = 16;
 				if(parseInt(amnt.value) > 250) amnt.value = 250;
 
+				qs("textarea").scrollTop = 0;
+
 				fetch("/api/random/"+len.value+"/"+amnt.value).then(res => res.text()).then(res => {
 					qs("textarea").value = res;
 				});
