@@ -28,7 +28,7 @@ route.get("/exists/:username?", async (req, res) => {
 
 	if(params.username) {
 		const user = await apiClient.helix.users.getUserByName(params.username);
-		res.send(user === null);
+		res.send(user !== null);
 	}
 });
 
