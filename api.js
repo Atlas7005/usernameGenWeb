@@ -1,5 +1,7 @@
 const express = require("express");
 const RandExp = require("randexp");
+const { ApiClient } = require("twitch");
+const { ClientCredentialsAuthProvider } = require("twitch-auth");
 const rateLimiting = require("express-rate-limit");
 const route = express.Router();
 
@@ -10,12 +12,24 @@ route.use(rateLimiting({
 	message: "Too many requests, please wait."
 }));
 
+const authProvider = new ClientCredentialsAuthProvider(require("./conf.js").twitch, require("./conf.js").twitch2);
+const apiClient = new ApiClient({ authProvider });
+
 route.get("/random/:len?/:amnt?", (req, res) => {
 	const params = req.params;
 	
 	var name = gen(params.len, params.amnt);
 
 	res.send(name);
+});
+
+route.get("/exists/:username?", async (req, res) => {
+	const params = req.params;
+
+	if(params.username) {
+		const user = await apiClient.helix.users.getUserByName(params.username);
+		res.send(user === null);
+	}
 });
 
 function gen(len=4, amnt=1) {
