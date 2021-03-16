@@ -79,6 +79,7 @@
 
 				if(username.value.length < 1) return;
 				if(!username.value.match(/^[a-zA-Z0-9][\w]{3,24}$/)) return qs(".exists").innerText = "Invalid Username";
+				qs(".exists").innerText = "";
 
 				fetch("/api/exists/"+username.value).then(res => res.text()).then(res => {
 					res.toLowerCase() === "true" ? qs(".exists").innerText = "Already Exists." : qs(".exists").innerText = "Doesn't Exist.";
