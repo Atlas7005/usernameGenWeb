@@ -45,7 +45,7 @@ function gen(len=4, amnt=1) {
 			}
 		}
 
-		return names.join("\n");
+		return names.sort().join("\n");
 	} else {
 		var name = new RandExp("^[a-zA-Z0-9][\\w]{"+(parseInt(len)-1)+"}$").gen();
 		return name;
