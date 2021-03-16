@@ -3,6 +3,7 @@ const RandExp = require("randexp");
 const { ApiClient } = require("twitch");
 const { ClientCredentialsAuthProvider } = require("twitch-auth");
 const rateLimiting = require("express-rate-limit");
+const apicache =  require("apicache");
 const route = express.Router();
 
 route.use(rateLimiting({
@@ -23,7 +24,7 @@ route.get("/random/:len?/:amnt?", (req, res) => {
 	res.send(name);
 });
 
-route.get("/exists/:username?", async (req, res) => {
+route.get("/exists/:username?", apicache.middleware("30 minutes"), async (req, res) => {
 	const params = req.params;
 
 	if(params.username) {
