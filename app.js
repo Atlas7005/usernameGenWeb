@@ -9,6 +9,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.static("public"));
 app.use(morgan("tiny"));
 app.use("/api", require("./api.js"));
+app.disable("x-powered-by");
 
 app.get("/", (req, res) => {
 	res.sendFile(`${__dirname}/html/index.html`);
