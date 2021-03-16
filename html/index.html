@@ -34,10 +34,26 @@
 				</label>
 			</p>
 		</form>
+		<h1>Twitch Username Availability Check</h1>
+		<p>I don't know why I made this either.</p>
+		<hr>
+		<form name="check">
+			<p>
+				<label>Username:</label><br>
+				<label>
+					<input type="text" name="username" placeholder="AtlasDevelopment">
+				</label>
+				<br>
+				<input type="submit">
+			</p>
+			<p>
+				<label>Output: <span class="exists"></span></label>
+			</p>
+		</form>
 		<script defer>
 			const qs = s => document.querySelector(s);
 
-			qs("input[type='submit']").onclick = e => {
+			qs("body > form:nth-child(4) > p:nth-child(2) > input[type=submit]").onclick = e => {
 				e.preventDefault();
 
 				var len = qs("input[name='len']");
@@ -53,6 +69,19 @@
 
 				fetch("/api/random/"+len.value+"/"+amnt.value).then(res => res.text()).then(res => {
 					qs("textarea").value = res;
+				});
+			}
+
+			qs("body > form:nth-child(8) > p > input[type=submit]").onclick = e => {
+				e.preventDefault();
+
+				var username = qs("input[name='username']");
+
+				if(username.value.length < 1) return;
+				if(!username.value.match(/^[a-zA-Z0-9][\w]{3,24}$/)) return qs(".exists").innerText = "Invalid Username";
+
+				fetch("/api/exists/"+username.value).then(res => res.text()).then(res => {
+					res.toLowerCase() === "true" ? qs(".exists").innerText = "Already Exists." : qs(".exists").innerText = "Doesn't Exist.";
 				});
 			}
 		</script>
