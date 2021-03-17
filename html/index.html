@@ -22,7 +22,7 @@
 			<p>
 				<label>Amount of Usernames:</label><br>
 				<label>
-					<input type="number" name="amnt" value="1" min="1" max="250">
+					<input type="number" name="amnt" value="1" min="1" max="500">
 				</label>
 				<br>
 				<input type="submit">
@@ -63,7 +63,7 @@
 				if(isNaN(parseInt(amnt.value))) amnt.value = 1;
 
 				if(parseInt(len.value) > 16) len.value = 16;
-				if(parseInt(amnt.value) > 250) amnt.value = 250;
+				if(parseInt(amnt.value) > 500) amnt.value = 500;
 
 				qs("textarea").scrollTop = 0;
 

@@ -41,7 +41,7 @@ function gen(len=4, amnt=1) {
 			var name = new RandExp("^[a-zA-Z0-9][\\w]{"+(parseInt(len)-1)+"}$").gen();
 			names.push(name);
 
-			if(i === parseInt(amnt)-1 || i === 249) {
+			if(i === parseInt(amnt)-1 || i === 499) {
 				break;
 			}
 		}
